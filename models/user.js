@@ -19,6 +19,9 @@ const userSchema = new mongoose.Schema({
       type: String,
       required: true
    },
+   height: String,
+   weight: String,
+   age: String,
    role: {
       type: String,
       default: "user"
@@ -34,10 +37,6 @@ userSchema.pre("save", async function(next) {
       next({status: 500, message: "something went wrong"});
    }
 })
-
-userSchema.methods.comparePass = async function(userPass, savedPass) {
-   return await bcrypt.compare(userPass, savedPass);
-}
 
 const User = mongoose.model('user', userSchema);
 

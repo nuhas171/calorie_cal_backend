@@ -1,4 +1,5 @@
 const express = require("express");
+const uri = require('./utils/mongoConfig');
 const mongoose = require("mongoose");
 const cors = require("cors");
 const userRouter = require("./routes/user");
@@ -10,7 +11,7 @@ app.use(cors())
 app.use(morgan("dev"))
 app.use(express.json())
 
-mongoose.connect("mongodb+srv://mostafijur163:6g.mEA_cF4R5A_b@cluster0.ndd3u.mongodb.net/calorie_calculator?retryWrites=true&w=majority").then(() => console.log("database connection successful"))
+mongoose.connect(uri).then(() => console.log("database connection successful"))
 
 app.use("/api/user/", userRouter)
 

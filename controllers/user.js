@@ -89,3 +89,18 @@ exports.saveActivity = async (req, res) => {
    }
    
 }
+
+exports.getActivity = async (req, res) => {
+   try {
+      const activities = await Activity.find({user: req.user.id});
+      res.status(200).json({
+         status: "success",
+         data: activities
+      })
+   } catch (error) {
+      res.status(500).json({
+         status: "fail",
+         message: "something went wrong"
+      })
+   }
+}
